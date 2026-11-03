@@ -11,7 +11,7 @@ const stripe = require('./stripe');
 const { handleMissedCall, toE164 } = require('./missed');
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC_URL = (process.env.PUBLIC_URL || `http://localhost:${PORT}`).replace(/\/$/, '');
+const PUBLIC_URL = (process.env.PUBLIC_URL || process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`).replace(/\/$/, '');
 const RING_SECONDS = Number(process.env.RING_SECONDS || 20);
 
 const app = express();

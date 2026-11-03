@@ -31,6 +31,12 @@ When a customer calls and you can't answer, We Missed You instantly sends them *
 - Twilio and Stripe called over plain `fetch`, no SDKs
 - Server-rendered HTML that can be installed as a PWA (Add to Home Screen shows "We Missed You" with the WMY icon)
 
+## Preview it free (no keys needed)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/blulabsdigital-lgtm/We-Missed-You-)
+
+Click the button, sign in to Render with GitHub, and press **Apply**. In a few minutes you get a live link you can open on your phone. It runs in test mode: payment unlocks for free and messages are logged instead of sent. The free plan sleeps when idle (the first load takes about 30s) and resets its data on each redeploy.
+
 ## Run it
 
 ```bash
