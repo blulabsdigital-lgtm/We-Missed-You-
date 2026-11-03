@@ -1,7 +1,7 @@
 {
   "name": "we-missed-you",
   "version": "1.0.0",
-  "description": "We Missed You — missed-call text-back for tradespeople. By Blue Labs LTD.",
+  "description": "We Missed You — missed-call text-back for tradespeople. By Blu Labs LTD.",
   "main": "src/server.js",
   "type": "commonjs",
   "private": true,

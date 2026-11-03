@@ -1,7 +1,7 @@
 {
   "name": "We Missed You",
   "short_name": "We Missed You",
-  "description": "Missed-call text-back for tradespeople. By Blue Labs LTD.",
+  "description": "Missed-call text-back for tradespeople. By Blu Labs LTD.",
   "start_url": "/dashboard",
   "scope": "/",
   "display": "standalone",

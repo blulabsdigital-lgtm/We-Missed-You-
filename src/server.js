@@ -152,7 +152,7 @@ app.post('/forgot', limitAuth, async (req, res) => {
     const { token, hash } = auth.newToken();
     db.updateUser(user.id, { token_hash: hash, token_expires: Date.now() + HOUR });
     await mail.send(user.email, 'Reset your We Missed You password',
-      `Hi ${user.name},\n\nReset your password here (link works for 1 hour):\n${PUBLIC_URL}/reset?token=${token}\n\nIf you didn't ask for this, ignore this email.\n\nWe Missed You, Blue Labs LTD`);
+      `Hi ${user.name},\n\nReset your password here (link works for 1 hour):\n${PUBLIC_URL}/reset?token=${token}\n\nIf you didn't ask for this, ignore this email.\n\nWe Missed You, Blu Labs LTD`);
   }
   res.page('Reset password', views.forgot({ sent: true })); // same response either way: no account enumeration
 });
@@ -355,7 +355,7 @@ app.post('/team/invite', needPaid, needOwner, needTeam, csrf, limitIp, async (re
   db.updateUser(id, { token_hash: hash, token_expires: Date.now() + 7 * 24 * HOUR, business_name: req.owner.business_name });
   const url = `${PUBLIC_URL}/join?token=${token}`;
   await mail.send(email, `${req.owner.name} added you to We Missed You`,
-    `Hi ${name},\n\n${req.owner.name} has added you to their team on We Missed You, so callers you miss get an instant reply.\n\nSet up your account here (link works for 7 days):\n${url}\n\nWe Missed You, Blue Labs LTD`);
+    `Hi ${name},\n\n${req.owner.name} has added you to their team on We Missed You, so callers you miss get an instant reply.\n\nSet up your account here (link works for 7 days):\n${url}\n\nWe Missed You, Blu Labs LTD`);
   req.owner = db.userById(req.owner.id);
   res.page('Team', teamPage(req, { invite: { name, url, emailed: mail.enabled } }));
 });

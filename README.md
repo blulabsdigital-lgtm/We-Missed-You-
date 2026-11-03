@@ -1,6 +1,6 @@
 # We Missed You
 
-**Missed-call text-back for tradespeople.** A Blue Labs LTD product.
+**Missed-call text-back for tradespeople.** A Blu Labs LTD product.
 
 When a customer calls and you can't answer, We Missed You instantly sends them *your* message by SMS or WhatsApp, so the job doesn't go to the next number on Google.
 

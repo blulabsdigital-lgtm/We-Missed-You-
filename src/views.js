@@ -35,7 +35,7 @@ const layout = ({ title, body, user, csrf, isOwner }) => `<!doctype html>
   }</nav>
 </header>
 <main>${body}</main>
-<footer>© ${new Date().getFullYear()} Blue Labs LTD · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></footer>
+<footer>© ${new Date().getFullYear()} Blu Labs LTD · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a><br><span class="small">Blu Labs LTD, registered in England &amp; Wales, company no. 17155484. Registered office: 9 Park Avenue West, Epsom, KT17 2NT.</span></footer>
 </body>
 </html>`;
 
@@ -305,10 +305,10 @@ ${invite ? `<section class="card invite">
 </section>`;
 };
 
-const legal = (title, html) => `<section class="card prose"><h1>${title}</h1>${html}<p class="muted small">Last updated ${new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}. Questions? Contact Blue Labs LTD.</p></section>`;
+const legal = (title, html) => `<section class="card prose"><h1>${title}</h1>${html}<p class="muted small">Last updated ${new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}. Questions? Contact Blu Labs LTD.</p></section>`;
 
 const privacy = () => legal('Privacy Policy', `
-<p>We Missed You is run by <b>Blue Labs LTD</b> (the "data controller"), registered in England and Wales.</p>
+<p>We Missed You is run by <b>Blu Labs LTD</b> (the "data controller"), registered in England and Wales, company number 17155484, registered office 9 Park Avenue West, Epsom, KT17 2NT.</p>
 <h2>What we collect</h2>
 <ul><li>Account details: name, email, a securely hashed password.</li>
 <li>Phone details: your mobile number and the We Missed You number we assign you.</li>
@@ -324,7 +324,7 @@ const privacy = () => legal('Privacy Policy', `
 <p>You can access, correct, export or delete your data, and you can complain to the ICO (ico.org.uk). You can delete your account any time from the Account page.</p>`);
 
 const terms = () => legal('Terms of Service', `
-<p>These terms are between you and <b>Blue Labs LTD</b> for the We Missed You service.</p>
+<p>These terms are between you and <b>Blu Labs LTD</b> for the We Missed You service.</p>
 <h2>The service</h2>
 <p>We Missed You sends an automatic message to people whose calls you don't answer. Delivery depends on phone networks, Twilio and WhatsApp, so we can't guarantee every message arrives.</p>
 <h2>Your responsibilities</h2>
