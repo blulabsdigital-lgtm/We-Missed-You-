@@ -3,7 +3,7 @@ const { PLANS, SEAT, TRIAL_DAYS } = require('./plans');
 
 const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-const THEME = process.env.THEME || 'classic';
+const THEME = process.env.THEME || 'glass-c';
 const hidden = (csrf) => `<input type="hidden" name="_csrf" value="${esc(csrf)}">`;
 
 const layout = ({ title, body, user, csrf, isOwner }) => `<!doctype html>
