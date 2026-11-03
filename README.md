@@ -54,10 +54,18 @@ Copy `.env.example` to `.env` and fill it in:
 1. **Host.** GitHub Pages only serves static files and can't run this, because the app needs a server for the phone webhooks. Cheapest options: Render, Railway or Fly.io (a `Dockerfile` is included; mount a disk at `/data`), or any £4/month VPS. Set `PUBLIC_URL` to the live URL.
 2. **Twilio.** Add the Account SID and Auth Token. UK numbers need a Regulatory Bundle and Address in the Twilio console: put their SIDs in `TWILIO_BUNDLE_SID` and `TWILIO_ADDRESS_SID`. Numbers are bought automatically, and their voice webhook is set to `/twilio/voice`.
 3. **WhatsApp.** Register one WhatsApp sender in Twilio and set `TWILIO_WHATSAPP_FROM`. Note: WhatsApp needs a Meta-approved *template* for business-initiated messages, so get the default message approved as a template (or use SMS until it is).
-4. **Stripe.** Create a recurring Price and set `STRIPE_SECRET_KEY` and `STRIPE_PRICE_ID`. Add a webhook to `<PUBLIC_URL>/stripe/webhook` with the events `checkout.session.completed`, `customer.subscription.updated` and `customer.subscription.deleted`, then set `STRIPE_WEBHOOK_SECRET`. Turn on the Customer Portal so the "Manage billing" link works.
+4. **Stripe.** Create the Solo, Team and extra-seat prices (monthly and yearly), then set `STRIPE_SECRET_KEY` and the `STRIPE_PRICE_*` values (see `.env.example`). Add a webhook to `<PUBLIC_URL>/stripe/webhook` with the events `checkout.session.completed`, `customer.subscription.updated` and `customer.subscription.deleted`, then set `STRIPE_WEBHOOK_SECRET`. Turn on the Customer Portal so the "Manage billing" link works.
 
 ### Running costs (approx.)
 A Twilio UK number is about £1/month per customer. A UK SMS is about 4p per message. Build both into the price.
 
+## Plans
+- **Solo** £14.99/mo or £149/yr: 1 person, 150 texts a month
+- **Team** £39/mo or £390/yr: 5 people, 400 texts a month shared, extra people £6/mo (+80 texts each)
+- A 7-day trial on every plan. The founding offer is a Stripe promotion code (`FOUNDER`), so no code changes are needed.
+
+## Security
+CSP and security headers, HSTS, scrypt-hashed passwords, signed `__Host-` session cookies that are revoked on password change, CSRF tokens, rate-limited login/signup/reset, one-time hashed reset and invite tokens, signature-checked Twilio and Stripe webhooks, no account enumeration, and numbers released when accounts are cancelled or deleted. `npm audit` reports 0 vulnerabilities.
+
 ## Later
-- Password reset email (Resend), contact sync, Postgres/Supabase when it grows, an admin page.
+- Contact sync, Postgres/Supabase when it grows, an internal admin page.

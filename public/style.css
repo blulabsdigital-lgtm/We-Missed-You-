@@ -113,3 +113,101 @@ legend { font-weight: 600; margin-bottom: 8px; font-size: 15px; }
 
 .number { font-size: 28px; font-weight: 900; color: var(--lime); margin: 0 0 8px; letter-spacing: .02em; }
 .code { font: 700 22px/1.3 ui-monospace, Menlo, monospace; background: var(--bg-deep); border: 1px dashed var(--lime); color: var(--lime); padding: 12px; border-radius: 10px; text-align: center; user-select: all; word-break: break-all; }
+
+/* ---------- Plans ---------- */
+.billing-toggle { display: flex; justify-content: center; gap: 4px; margin: 20px auto 16px; background: var(--bg-deep); border: 1px solid var(--line); border-radius: 99px; padding: 4px; width: fit-content; }
+.billing-toggle label { margin: 0; }
+.billing-toggle input { position: absolute; opacity: 0; }
+.billing-toggle span { display: block; padding: 8px 16px; border-radius: 99px; cursor: pointer; font-weight: 600; font-size: 14px; }
+.billing-toggle em { font-style: normal; font-size: 12px; color: var(--lime); }
+.billing-toggle input:checked + span { background: var(--lime); color: var(--bg-deep); }
+.billing-toggle input:checked + span em { color: var(--bg-deep); }
+.billing-toggle input:focus-visible + span { outline: 2px solid var(--mint); }
+.plans { display: grid; gap: 12px; margin-bottom: 18px; }
+@media (min-width: 640px) { .plans { grid-template-columns: 1fr 1fr; } }
+.plan { position: relative; display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 20px; border-radius: var(--radius); background: var(--card); border: 1.5px solid var(--line); font-weight: 400; cursor: default; }
+.plan:has(input) { cursor: pointer; }
+.plan input { position: absolute; top: 20px; right: 20px; accent-color: var(--lime); width: 20px; height: 20px; }
+.plan:has(input:checked) { border-color: var(--lime); box-shadow: 0 0 0 3px rgba(182,240,106,.15); }
+.plan.featured::before { content: 'Best for crews'; position: absolute; top: -11px; left: 20px; background: linear-gradient(90deg, var(--lime), var(--mint)); color: var(--bg-deep); font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: .04em; }
+.plan-name { font-size: 20px; font-weight: 800; }
+.price { font-size: 32px; font-weight: 900; margin: 6px 0; }
+.price small { font-size: 14px; font-weight: 500; color: var(--muted); }
+.price .y { display: none; }
+body:has(.billing-toggle input[value=year]:checked) .price .m { display: none; }
+body:has(.billing-toggle input[value=year]:checked) .price .y { display: inline; }
+.plan ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 6px; font-size: 15px; }
+.plan li::before { content: '✓'; color: var(--lime); font-weight: 900; margin-right: 8px; }
+.pricing { padding: 24px 0 8px; }
+
+/* ---------- Usage ---------- */
+.usage { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; margin: 0 0 16px; font-size: 14px; }
+.card .usage { background: var(--bg-deep); margin: 14px 0; }
+.usage .bar { height: 8px; border-radius: 99px; background: var(--bg-deep); overflow: hidden; margin-top: 8px; }
+.card .usage .bar { background: var(--card); }
+.usage .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--lime), var(--mint)); transition: width .4s; }
+.usage.warn .bar span { background: #ffd166; }
+.usage.full .bar span { background: var(--red); }
+.usage p { margin: 8px 0 0; }
+
+/* ---------- Team / account ---------- */
+.members { list-style: none; padding: 0; margin: 0; }
+.members li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.members li:first-child { border-top: 0; }
+.small-code { font-size: 13px; text-align: left; }
+.invite { border-color: var(--lime); }
+details.card summary { cursor: pointer; font-weight: 700; color: var(--muted); }
+details.danger[open] summary { color: var(--red); margin-bottom: 8px; }
+.btn.danger { background: var(--red); color: #2a0b08; }
+.calls li a { color: var(--text); text-decoration: none; font-weight: 600; }
+.prose h2 { font-size: 17px; margin: 20px 0 6px; }
+.prose ul { padding-left: 20px; }
+footer a { color: var(--muted); }
+button:disabled { opacity: .6; cursor: wait; }
+
+/* ---------- Glass themes + shimmer (THEME env var picks one) ---------- */
+.sheen { display: none; }
+body[class*="theme-glass"] .card, body[class*="theme-glass"] .stat, body[class*="theme-glass"] .usage,
+body[class*="theme-glass"] .plan, body[class*="theme-glass"] .steps li {
+  background: var(--glass); border-color: var(--glass-edge);
+  backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 12px 32px rgba(0,0,0,.22);
+}
+body[class*="theme-glass"] input, body[class*="theme-glass"] textarea, body[class*="theme-glass"] .choice,
+body[class*="theme-glass"] .toggle, body[class*="theme-glass"] .chip, body[class*="theme-glass"] .code { background: rgba(8,18,32,.35); }
+body[class*="theme-glass"] .sheen {
+  display: block; position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+body[class*="theme-glass"] .sheen::after {
+  content: ''; position: absolute; top: -50%; left: -60%; width: 45%; height: 200%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.0) 30%, rgba(200,230,255,.09) 50%, rgba(255,255,255,0) 70%, transparent 100%);
+  transform: rotate(8deg); animation: sheen 20s ease-in-out infinite;
+}
+@keyframes sheen { 0%, 82% { left: -60%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) { body[class*="theme-glass"] .sheen::after { animation: none; display: none; } }
+body[class*="theme-glass"] main, body[class*="theme-glass"] .top, body[class*="theme-glass"] footer { position: relative; z-index: 1; }
+
+/* A: Frosted Slate, a cooler, greyer navy */
+body.theme-glass-a {
+  --bg: #1c2e45; --bg-deep: #121f31; --card: #22374f; --line: #34506f;
+  --glass: rgba(120,150,190,.10); --glass-edge: rgba(190,215,240,.16);
+  background: radial-gradient(900px 500px at 15% -10%, #2e4867 0%, transparent 60%),
+              radial-gradient(800px 600px at 110% 30%, #1f3a4f 0%, transparent 55%),
+              linear-gradient(170deg, #1c2e45 0%, #142236 60%, #0f1a2a 100%) fixed;
+}
+/* B: Midnight Ice, deeper, with a teal glint */
+body.theme-glass-b {
+  --bg: #15263b; --bg-deep: #0d1828; --card: #1b2f47; --line: #2b4a66;
+  --glass: rgba(110,190,210,.08); --glass-edge: rgba(150,230,235,.16);
+  background: radial-gradient(1000px 520px at 85% -10%, #1f4a5c 0%, transparent 60%),
+              radial-gradient(700px 500px at -10% 70%, #1d3550 0%, transparent 60%),
+              linear-gradient(180deg, #15263b 0%, #0d1828 100%) fixed;
+}
+/* C: Aurora Glass, the warm navy with a soft lime-mint aurora */
+body.theme-glass-c {
+  --bg: #1a2d47; --bg-deep: #111f33; --card: #20365a; --line: #33507a;
+  --glass: rgba(140,170,215,.09); --glass-edge: rgba(200,225,250,.15);
+  background: radial-gradient(700px 380px at 80% -5%, rgba(111,227,193,.16) 0%, transparent 65%),
+              radial-gradient(600px 400px at 0% 20%, rgba(182,240,106,.09) 0%, transparent 60%),
+              linear-gradient(175deg, #1f3554 0%, #15263f 55%, #0f1b2d 100%) fixed;
+}
